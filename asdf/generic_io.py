@@ -9,7 +9,7 @@ The classes in this module should not be instantiated directly, but
 instead, one should use the factory function `get_file`.
 """
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 from distutils.version import LooseVersion
 import io
@@ -81,7 +81,7 @@ if (sys.platform == 'darwin' and
             return np.fromfile(fd, dtype=np.uint8, count=size)
         else:
             array = np.empty(size, dtype=np.uint8)
-            for beg in xrange(0, size, chunk_size):
+            for beg in range(0, size, chunk_size):
                 end = min(size, beg + chunk_size)
                 array[beg:end] = np.fromfile(fd, dtype=np.uint8, count=end - beg)
             return array
@@ -104,7 +104,7 @@ size : integer
 
 def _array_tofile_chunked(write, array, chunksize):  # pragma: no cover
     array = array.view(np.uint8).flatten()
-    for i in xrange(0, array.nbytes, chunksize):
+    for i in range(0, array.nbytes, chunksize):
         write(array[i:i + chunksize].data)
 
 
@@ -362,7 +362,7 @@ class GenericFile(object):
         object.
         """
         i = 0
-        for i in xrange(0, size - self._blksize, self._blksize):
+        for i in range(0, size - self._blksize, self._blksize):
             yield self.read(self._blksize)
         if i < size:
             yield self.read(size - i)
@@ -630,7 +630,7 @@ class GenericFile(object):
         Write nbytes of zeros.
         """
         blank_data = b'\0' * self.block_size
-        for i in xrange(0, nbytes, self.block_size):
+        for i in range(0, nbytes, self.block_size):
             length = min(nbytes - i, self.block_size)
             self.write(blank_data[:length])
 
@@ -1015,7 +1015,7 @@ class HTTPConnection(RandomAccessFile):
 
                 # Now copy over to the temporary file, block-by-block
                 self._local.seek(a * block_size, os.SEEK_SET)
-                for i in xrange(a, b):
+                for i in range(a, b):
                     chunk = response.read(block_size)
                     self._local.write(chunk)
                     mark_block(i)

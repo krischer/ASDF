@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 import io
 import os
@@ -115,7 +115,7 @@ def test_byteorder(tmpdir):
 def test_all_dtypes(tmpdir):
     tree = {}
     for byteorder in ('>', '<'):
-        for dtype in ndarray._datatype_names.values():
+        for dtype in list(ndarray._datatype_names.values()):
             # Python 3 can't expose these dtypes in non-native byte
             # order, because it's using the new Python buffer
             # interface.

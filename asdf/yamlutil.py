@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 import numpy as np
 
@@ -181,7 +181,7 @@ def represent_ordered_mapping(dumper, tag, data):
                              flow_style=dumper.default_flow_style)
     if dumper.alias_key is not None:
         dumper.represented_objects[dumper.alias_key] = node
-    for key, value in data.items():
+    for key, value in list(data.items()):
         key_item = dumper.represent_data(key)
         value_item = dumper.represent_data(value)
         node_item = yaml.MappingNode(YAML_OMAP_TAG,
@@ -217,7 +217,7 @@ if six.PY2:
     # than !!python/unicode. See http://pyyaml.org/ticket/11
     def _unicode_representer(dumper, value):
         return dumper.represent_scalar("tag:yaml.org,2002:str", value)
-    AsdfDumper.add_representer(unicode, _unicode_representer)
+    AsdfDumper.add_representer(str, _unicode_representer)
 
     AsdfLoader.add_constructor('tag:yaml.org,2002:str',
                                AsdfLoader.construct_scalar)

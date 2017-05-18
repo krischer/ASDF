@@ -7,7 +7,7 @@ standard <http://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03>`__
 and `JSON Pointer standard <http://tools.ietf.org/html/rfc6901>`__.
 """
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 from collections import Sequence
 import weakref
@@ -30,11 +30,11 @@ def resolve_fragment(tree, pointer):
     """
     Resolve a JSON Pointer within the tree.
     """
-    pointer = pointer.lstrip(u"/")
-    parts = urlparse.unquote(pointer).split(u"/") if pointer else []
+    pointer = pointer.lstrip("/")
+    parts = urlparse.unquote(pointer).split("/") if pointer else []
 
     for part in parts:
-        part = part.replace(u"~1", u"/").replace(u"~0", u"~")
+        part = part.replace("~1", "/").replace("~0", "~")
 
         if isinstance(tree, Sequence):
             # Array indexes should be turned into integers
@@ -175,7 +175,7 @@ def make_reference(asdffile, path):
         A reference object.
     """
     path_str = '/'.join(
-        x.replace(u"~", u"~0").replace(u"/", u"~1")
+        x.replace("~", "~0").replace("/", "~1")
         for x in path)
     target = resolve_fragment(asdffile.tree, path_str)
 

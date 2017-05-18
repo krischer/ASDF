@@ -42,14 +42,14 @@ import subprocess as sp
 import sys
 
 try:
-    from ConfigParser import ConfigParser, RawConfigParser
+    from configparser import ConfigParser, RawConfigParser
 except ImportError:
     from configparser import ConfigParser, RawConfigParser
 
 
 if sys.version_info[0] < 3:
-    _str_types = (str, unicode)
-    _text_type = unicode
+    _str_types = (str, str)
+    _text_type = str
     PY3 = False
 else:
     _str_types = (str, bytes)

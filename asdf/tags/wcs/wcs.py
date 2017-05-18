@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 
 import six
@@ -126,7 +126,7 @@ class FrameType(AsdfType):
             frame_cls = cls._get_reference_frame_mapping()[reference_frame_name]
 
             frame_kwargs = {}
-            for name in frame_cls.get_frame_attr_names().keys():
+            for name in list(frame_cls.get_frame_attr_names().keys()):
                 val = reference_frame.get(name)
                 if val is not None:
                     if isinstance(val, list):
@@ -166,7 +166,7 @@ class FrameType(AsdfType):
             reference_frame['type'] = cls._get_inverse_reference_frame_mapping()[
                 type(frame.reference_frame)]
 
-            for name in frame.reference_frame.get_frame_attr_names().keys():
+            for name in list(frame.reference_frame.get_frame_attr_names().keys()):
                 val = getattr(frame.reference_frame, name)
                 if isinstance(val, u.Quantity):
                     value = val.value
@@ -195,7 +195,7 @@ class FrameType(AsdfType):
         assert old.unit == new.unit
 
         if old.reference_frame is not None:
-            for name in old.reference_frame.get_frame_attr_names().keys():
+            for name in list(old.reference_frame.get_frame_attr_names().keys()):
                 helpers.assert_tree_match(
                     getattr(old.reference_frame, name),
                     getattr(new.reference_frame, name))

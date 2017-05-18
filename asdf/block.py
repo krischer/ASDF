@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 from collections import namedtuple
 import copy
@@ -60,7 +60,7 @@ class BlockManager(object):
         `finish_reading_internal_blocks` to find the positions and
         header information of all blocks in the file.
         """
-        return sum(len(x) for x in self._block_type_mapping.values())
+        return sum(len(x) for x in list(self._block_type_mapping.values()))
 
     def add(self, block):
         """
@@ -140,7 +140,7 @@ class BlockManager(object):
         `finish_reading_internal_blocks` to find the positions and
         header information of all blocks in the file.
         """
-        for block_set in self._block_type_mapping.values():
+        for block_set in list(self._block_type_mapping.values()):
             for block in block_set:
                 yield block
 

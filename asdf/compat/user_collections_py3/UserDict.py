@@ -40,12 +40,12 @@ class UserDict(object):
             self.data = data
         c.update(self)
         return c
-    def keys(self): return self.data.keys()
-    def items(self): return self.data.items()
-    def iteritems(self): return self.data.iteritems()
-    def iterkeys(self): return self.data.iterkeys()
-    def itervalues(self): return self.data.itervalues()
-    def values(self): return self.data.values()
+    def keys(self): return list(self.data.keys())
+    def items(self): return list(self.data.items())
+    def iteritems(self): return iter(self.data.items())
+    def iterkeys(self): return iter(self.data.keys())
+    def itervalues(self): return iter(self.data.values())
+    def values(self): return list(self.data.values())
     def has_key(self, key): return key in self.data
     def update(self, dict=None, **kwargs):
         if dict is None:
@@ -55,7 +55,7 @@ class UserDict(object):
         elif isinstance(dict, type({})) or not hasattr(dict, 'items'):
             self.data.update(dict)
         else:
-            for k, v in dict.items():
+            for k, v in list(dict.items()):
                 self[k] = v
         if len(kwargs):
             self.data.update(kwargs)

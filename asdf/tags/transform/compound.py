@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 import six
 
@@ -37,7 +37,7 @@ _tag_to_method_mapping = {
 
 
 class CompoundType(TransformType):
-    name = ['transform/' + x for x in _tag_to_method_mapping.keys()]
+    name = ['transform/' + x for x in list(_tag_to_method_mapping.keys())]
     types = ['astropy.modeling.core._CompoundModel']
     handle_dynamic_subclasses = True
 

@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 import datetime
 import copy
@@ -115,7 +115,7 @@ class AsdfFile(versioning.VersionedMixin):
             # whether it "owns" the file and should close it.
             self._fd.__exit__(type, value, traceback)
             self._fd = None
-        for external in self._external_asdf_by_uri.values():
+        for external in list(self._external_asdf_by_uri.values()):
             external.__exit__(type, value, traceback)
         self._external_asdf_by_uri.clear()
         self._blocks.close()
@@ -136,7 +136,7 @@ class AsdfFile(versioning.VersionedMixin):
             # whether it "owns" the file and should close it.
             self._fd.close()
             self._fd = None
-        for external in self._external_asdf_by_uri.values():
+        for external in list(self._external_asdf_by_uri.values()):
             external.close()
         self._external_asdf_by_uri.clear()
         self._blocks.close()

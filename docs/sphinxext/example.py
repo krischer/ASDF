@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 import atexit
 import io
@@ -104,7 +104,7 @@ class AsdfDirective(Directive):
                     lines.append('BLOCK {0}:'.format(i))
 
                     human_flags = []
-                    for key, val in FLAGS.items():
+                    for key, val in list(FLAGS.items()):
                         if flags & key:
                             human_flags.append(val)
                     if len(human_flags):

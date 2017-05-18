@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 import datetime
 import json
@@ -56,11 +56,11 @@ PYTHON_TYPE_TO_YAML_TAG = {
 
 
 if six.PY2:
-    PYTHON_TYPE_TO_YAML_TAG[long] = 'int'
+    PYTHON_TYPE_TO_YAML_TAG[int] = 'int'
 
 
 # Prepend full YAML tag prefix
-for k, v in PYTHON_TYPE_TO_YAML_TAG.items():
+for k, v in list(PYTHON_TYPE_TO_YAML_TAG.items()):
     PYTHON_TYPE_TO_YAML_TAG[k] = constants.YAML_TAG_PREFIX + v
 
 
@@ -435,8 +435,8 @@ if six.PY2:
         Validate that the tree has no large numeric literals.
         """
         # We can count on 52 bits of precision
-        upper = ((long(1) << 51) - 1)
-        lower = -((long(1) << 51) - 2)
+        upper = ((int(1) << 51) - 1)
+        lower = -((int(1) << 51) - 2)
 
         for instance in treeutil.iter_tree(instance):
             if (isinstance(instance, six.integer_types) and

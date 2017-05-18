@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 import inspect
 import math
@@ -171,7 +171,7 @@ class BinaryStruct(object):
         is a dictionary mapping field names to values.
         """
         args = struct.unpack_from(self._fmt, buff[:self._size])
-        return dict(izip(self._names, args))
+        return dict(zip(self._names, args))
 
     def update(self, fd, **kwargs):
         """
@@ -207,7 +207,7 @@ class HashableDict(dict):
     matter.
     """
     def __hash__(self):
-        return hash(frozenset(self.items()))
+        return hash(frozenset(list(self.items())))
 
 
 def resolve_name(name):

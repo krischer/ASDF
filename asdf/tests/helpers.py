@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 import io
 import os
@@ -68,9 +68,9 @@ def assert_tree_match(old_tree, new_tree, ctx=None,
             hasattr(old_type, funcname)):
             getattr(old_type, funcname)(old, new)
         elif isinstance(old, dict) and isinstance(new, dict):
-            assert (set(x for x in old.keys() if x not in ignore_keys) ==
-                    set(x for x in new.keys() if x not in ignore_keys))
-            for key in old.keys():
+            assert (set(x for x in list(old.keys()) if x not in ignore_keys) ==
+                    set(x for x in list(new.keys()) if x not in ignore_keys))
+            for key in list(old.keys()):
                 if key not in ignore_keys:
                     recurse(old[key], new[key])
         elif isinstance(old, (list, tuple)) and isinstance(new, (list, tuple)):

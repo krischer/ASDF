@@ -43,7 +43,7 @@ from astropy_helpers.sphinx.conf import *
 
 # Get configuration information from setup.cfg
 try:
-    from ConfigParser import ConfigParser
+    from configparser import ConfigParser
 except ImportError:
     from configparser import ConfigParser
 conf = ConfigParser()
@@ -132,7 +132,7 @@ htmlhelp_basename = project + 'doc'
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
-latex_documents = [('index', project + '.tex', project + u' Documentation',
+latex_documents = [('index', project + '.tex', project + ' Documentation',
                     author, 'manual')]
 
 
@@ -140,7 +140,7 @@ latex_documents = [('index', project + '.tex', project + u' Documentation',
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [('index', project.lower(), project + u' Documentation',
+man_pages = [('index', project.lower(), project + ' Documentation',
               [author], 1)]
 
 

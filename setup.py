@@ -12,7 +12,7 @@ from setuptools import setup
 if sys.version_info[0] >= 3:
     import builtins
 else:
-    import __builtin__ as builtins
+    import builtins as builtins
 builtins._ASDF_SETUP_ = True
 
 from astropy_helpers.setup_helpers import (
@@ -27,7 +27,7 @@ test_helpers.AstropyTest._validate_required_deps = _null_validate
 
 # Get some values from the setup.cfg
 try:
-    from ConfigParser import ConfigParser
+    from configparser import ConfigParser
 except ImportError:
     from configparser import ConfigParser
 conf = ConfigParser()

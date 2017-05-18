@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 from numpy.testing import assert_array_equal
 
@@ -212,7 +212,7 @@ _generic_projections = {
 
 
 def make_projection_types():
-    for tag_name, (name, params) in _generic_projections.items():
+    for tag_name, (name, params) in list(_generic_projections.items()):
         class_name = '{0}Type'.format(name)
         types = ['astropy.modeling.projections.Pix2Sky_{0}'.format(name),
                  'astropy.modeling.projections.Sky2Pix_{0}'.format(name)]

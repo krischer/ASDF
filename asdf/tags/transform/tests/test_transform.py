@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, unicode_literals, print_function
+
 
 import numpy as np
 
@@ -121,7 +121,7 @@ def test_naming_of_compound_model(tmpdir):
 def test_generic_projections(tmpdir):
     from .. import projections
 
-    for tag_name, (name, params) in projections._generic_projections.items():
+    for tag_name, (name, params) in list(projections._generic_projections.items()):
         tree = {
             'forward': util.resolve_name(
                 'astropy.modeling.projections.Sky2Pix_{0}'.format(name))(),
